@@ -1,0 +1,53 @@
+{
+  "eyebrow": "Work",
+  "title": "Experience & projects",
+  "lead": "Where I've been shipping — and a couple of things I've built on the side.",
+
+  "experience": [
+    {
+      "company": "Paysys Labs",
+      "companyUrl": "https://www.linkedin.com/company/paysys-labs",
+      "role": "Associate Software Engineer",
+      "mode": "Onsite",
+      "period": "Oct 2025 — Present",
+      "current": true,
+      "points": [
+        "Designed a configurable business workflow automation system for multi-operator financial authorizations, reducing execution time by 75% (800ms → 200ms) by replacing variable-based request processing with JSON payloads.",
+        "Replaced hardcoded API integration mappings with dynamic configuration using Spring Expression Language, cutting per-parameter update turnaround from ~20 minutes to under 3 minutes and reducing application redeployments by 80%.",
+        "Implemented a dynamic external-API error-handling mechanism using database-configured JSON paths, reducing generic UI errors from ~90% to ~5% while eliminating code changes for varying response structures.",
+        "Developed a bulk merchant onboarding pipeline for Tanzania & Togo, enabling migration of 250,000+ merchants from legacy platforms and reducing per-merchant onboarding from 5 minutes to under 1 minute.",
+        "Architected a distributed background job-processing engine using Spring Batch & Quartz Scheduler with workflow orchestration, configurable retries, callback notifications and multithreaded batch execution.",
+        "Automated external-API configuration in an internal middleware service, generating structured queries across 7+ interdependent tables and reducing configuration time by 90%.",
+        "Built a configurable, template-driven notification service supporting 10+ notification types across 3+ delivery channels."
+      ]
+    },
+    {
+      "company": "Paysys Labs",
+      "companyUrl": "https://www.linkedin.com/company/paysys-labs",
+      "role": "Software Engineer Intern",
+      "mode": "Onsite",
+      "period": "Jun 2025 — Sep 2025",
+      "current": false,
+      "points": [
+        "Designed an automated WhatsApp-driven incident management system that captured issue details, created JIRA tickets and assigned operations engineers through round-robin scheduling, reducing manual effort and reporting delays for field sales teams.",
+        "Wrote unit tests for 60+ backend services using Mockito & JUnit across multiple applications, achieving ~95% code coverage to improve reliability and support refactoring."
+      ]
+    }
+  ],
+
+  "projectsHeading": "Selected projects",
+  "projects": [
+    {
+      "name": "Incident Reporting System",
+      "url": "https://github.com/tous33f/issue-tracker",
+      "stack": ["NodeJS", "ExpressJS", "ReactJS", "SQLite"],
+      "description": "A WhatsApp-based incident management system that collects structured issue details, automatically creates tickets, assigns requests using round-robin shift scheduling and standardizes reporting for faster processing."
+    },
+    {
+      "name": "Kollege",
+      "url": "https://github.com/tous33f/Kollege",
+      "stack": ["NodeJS", "ExpressJS", "ReactJS", "MySQL"],
+      "description": "A standalone learning platform integrating course delivery, discussion forums, live calls and community management in a single place — removing the need to juggle Udemy, Discord and Reddit."
+    }
+  ]
+}

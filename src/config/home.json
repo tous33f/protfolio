@@ -1,0 +1,51 @@
+{
+  "avatar": {
+    "image": "/avatar/profile.png",
+    "alt": "Muhammad Touseef",
+    "fallbackInitials": "MT",
+    "showDecorations": true,
+    "availableBadge": "Available"
+  },
+
+  "intro": {
+    "emoji": "👋",
+    "text": "Hi, I'm — based in Pakistan"
+  },
+
+  "name": {
+    "text": "TOUSEEF",
+    "toggleIndex": 1
+  },
+
+  "headline": {
+    "text": "I build scalable, configuration-driven financial systems.",
+    "underlines": [
+      { "start": 8, "end": 16 }
+    ]
+  },
+
+  "switchHint": "The {O} above is a real switch — flip it to move between light & dark.",
+
+  "buttons": [
+    { "label": "View my work", "to": "/work", "variant": "primary" },
+    { "label": "Get in touch", "to": "/contact", "variant": "ghost" }
+  ],
+
+  "sidebar": {
+    "role": "Associate Software Engineer",
+    "company": "Paysys Labs",
+    "blurb": "I build scalable, configuration-driven backend systems for multi-operator financial platforms — turning hardcoded, slow-to-change processes into dynamic, observable services.",
+    "stats": [
+      { "value": "250K+", "label": "Merchants migrated" },
+      { "value": "75%", "label": "Faster execution" },
+      { "value": "95%", "label": "Test coverage" },
+      { "value": "10+", "label": "Notification types" }
+    ],
+    "socials": [
+      {"label": "Resume", "href": "https://drive.google.com/file/d/1eJWbvsNlF85X3BS2Z-ZkdqddZEFeW8p4/view?usp=drive_link"},
+      { "label": "GitHub", "href": "https://github.com/tous33f" },
+      { "label": "LinkedIn", "href": "https://www.linkedin.com/in/muhammad7touseef" },
+      { "label": "Email", "href": "mailto:touseefnaveed777@gmail.com" }
+    ]
+  }
+}

@@ -1,38 +1,47 @@
 import { useEffect, useState } from 'react'
-import { decorations } from '../data/decorations'
+import decorationConfig from '../config/decorations.json'
 import styles from './Avatar.module.css'
 
-// How long each decoration frame stays before crossfading to the next.
-// (APNG frames loop on their own; this drives the rotation through the set.)
-const CYCLE_MS = 6000
-const N = decorations.length
+const FRAMES = decorationConfig.frames || []
+const CYCLE_MS = decorationConfig.cycleMs || 6000
+const N = FRAMES.length
 
 // Avatar with animated decoration frames overlaid on top (avatardecoration.com).
-// The frames rotate: each one plays, then crossfades into the next, looping the
-// whole set forever so it never stops.
+// Frames + timing come from src/config/decorations.json; the profile image and
+// text come from src/config/home.json (passed in as props by <Hero />).
 //
-// To use a real photo: drop it in src/assets and swap <PlaceholderFace /> for
-//   import photo from '../assets/your-photo.png'
-//   ...<img src={photo} className={styles.photo} alt="Muhammad Touseef" />
-export default function Avatar() {
+// The frames rotate: each one plays, then crossfades into the next, looping the
+// whole set forever. If the configured image is missing, we fall back to a
+// placeholder with the initials from config.
+export default function Avatar({
+  image = '',
+  alt = '',
+  initials = '',
+  showDecorations = true,
+  badge = 'Available',
+}) {
   const [idx, setIdx] = useState(0)
+  const [imgFailed, setImgFailed] = useState(false)
 
   // Preload every frame so swaps are instant and animation stays continuous.
   useEffect(() => {
-    const imgs = decorations.map((d) => {
+    if (!showDecorations) return
+    const imgs = FRAMES.map((src) => {
       const img = new Image()
-      img.src = d.url
+      img.src = src
       return img
     })
     return () => imgs.splice(0)
-  }, [])
+  }, [showDecorations])
 
   useEffect(() => {
+    if (!showDecorations || N < 2) return
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
     const timer = setInterval(() => setIdx((i) => (i + 1) % N), CYCLE_MS)
     return () => clearInterval(timer)
-  }, [])
+  }, [showDecorations])
 
+  const useImage = image && !imgFailed
   const prev = (idx - 1 + N) % N
 
   return (
@@ -40,39 +49,54 @@ export default function Avatar() {
       <span className={styles.glow} />
 
       <div className={styles.avatar}>
-        <PlaceholderFace />
+        {useImage ? (
+          <img
+            src={image}
+            alt={alt}
+            className={styles.photo}
+            onError={() => setImgFailed(true)}
+          />
+        ) : (
+          <PlaceholderFace initials={initials} />
+        )}
       </div>
 
       {/* Decoration frames overlaid in the foreground, crossfading */}
-      <img
-        key={`b-${prev}`}
-        src={decorations[prev].url}
-        alt=""
-        aria-hidden="true"
-        className={styles.deco}
-      />
-      <img
-        key={`f-${idx}`}
-        src={decorations[idx].url}
-        alt=""
-        aria-hidden="true"
-        className={`${styles.deco} ${styles.decoFront}`}
-      />
+      {showDecorations && N > 0 && (
+        <>
+          <img
+            key={`b-${prev}`}
+            src={FRAMES[prev]}
+            alt=""
+            aria-hidden="true"
+            className={styles.deco}
+          />
+          <img
+            key={`f-${idx}`}
+            src={FRAMES[idx]}
+            alt=""
+            aria-hidden="true"
+            className={`${styles.deco} ${styles.decoFront}`}
+          />
+        </>
+      )}
 
-      <span className={styles.badge} title="Open to work">
-        ● Available
-      </span>
+      {badge && (
+        <span className={styles.badge} title="Open to work">
+          ● {badge}
+        </span>
+      )}
     </div>
   )
 }
 
-function PlaceholderFace() {
+function PlaceholderFace({ initials = 'MT' }) {
   return (
     <svg
       viewBox="0 0 120 120"
       className={styles.photo}
       role="img"
-      aria-label="Muhammad Touseef avatar placeholder"
+      aria-label={`${initials} avatar placeholder`}
     >
       <defs>
         <linearGradient id="avBg" x1="0" y1="0" x2="1" y2="1">
@@ -94,7 +118,7 @@ function PlaceholderFace() {
         fontWeight="700"
         fill="rgba(255,255,255,0.92)"
       >
-        MT
+        {initials}
       </text>
     </svg>
   )

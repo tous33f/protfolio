@@ -1,41 +1,61 @@
-import { profile, skills, education } from '../data/resume'
+import { Fragment } from 'react'
+import about from '../config/about.json'
 import { useReveal } from '../hooks/useReveal'
 import styles from './About.module.css'
 
+// Wrap the [start, end) ranges of `text` in accent-highlight spans.
+function renderHighlights(text, ranges = []) {
+  const sorted = [...ranges]
+    .filter((r) => r && r.end > r.start)
+    .sort((a, b) => a.start - b.start)
+
+  const out = []
+  let cursor = 0
+  sorted.forEach((r, i) => {
+    const start = Math.max(cursor, r.start)
+    if (start > cursor)
+      out.push(<Fragment key={`t${i}`}>{text.slice(cursor, start)}</Fragment>)
+    out.push(
+      <span key={`h${i}`} className={styles.hl}>
+        {text.slice(start, r.end)}
+      </span>
+    )
+    cursor = r.end
+  })
+  if (cursor < text.length)
+    out.push(<Fragment key="tail">{text.slice(cursor)}</Fragment>)
+  return out
+}
+
 export default function About() {
   const ref = useReveal()
+  const { eyebrow, title, bio, education, skills } = about
 
   return (
     <section id="about" className="section">
       <div className="container" ref={ref}>
-        <p className="section-eyebrow reveal">About</p>
+        <p className="section-eyebrow reveal">{eyebrow}</p>
         <h2 className="section-title reveal">
-          Backend engineer who makes systems{' '}
-          <span className={styles.hl}>faster to run</span> and{' '}
-          <span className={styles.hl}>easier to change</span>.
+          {renderHighlights(title.text, title.highlights)}
         </h2>
 
         <div className={styles.grid}>
           <div className={`${styles.bio} reveal`}>
-            <p>{profile.shortBio}</p>
-            <p>
-              At Paysys Labs I work across workflow automation, distributed job
-              processing and integration layers — replacing hardcoded, slow-to-
-              change logic with configuration-driven services that any developer
-              can extend without redeploys.
-            </p>
+            {bio.map((para, i) => (
+              <p key={i}>{para}</p>
+            ))}
 
             <div className={styles.edu}>
-              <h3>Education</h3>
-              {education.map((e) => (
-                <div key={e.school} className={styles.eduItem}>
+              <h3>{education.heading}</h3>
+              {education.items.map((e, i) => (
+                <div key={i} className={styles.eduItem}>
                   <div>
                     <strong>{e.school}</strong>
                     <span>{e.degree}</span>
                   </div>
                   <div className={styles.eduMeta}>
                     <span>{e.period}</span>
-                    <span className={styles.gpa}>{e.detail}</span>
+                    {e.detail && <span className={styles.gpa}>{e.detail}</span>}
                   </div>
                 </div>
               ))}
@@ -43,9 +63,9 @@ export default function About() {
           </div>
 
           <div className={`${styles.skills} reveal`}>
-            <h3>Toolbox</h3>
+            <h3>{skills.heading}</h3>
             <div className={styles.skillGroups}>
-              {skills.map((group) => (
+              {skills.groups.map((group) => (
                 <div key={group.group} className={styles.skillGroup}>
                   <span className={styles.skillLabel}>{group.group}</span>
                   <ul>

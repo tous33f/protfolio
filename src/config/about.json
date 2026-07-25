@@ -1,0 +1,82 @@
+{
+  "eyebrow": "About",
+  "title": {
+    "text": "Backend engineer who makes systems faster to run and easier to change.",
+    "highlights": [
+      { "start": 35, "end": 48 },
+      { "start": 53, "end": 69 }
+    ]
+  },
+  "bio": [
+    "Associate Software Engineer at Paysys Labs. I design workflow automation, job-processing engines and integration layers with Java & Spring Boot, obsessing over making systems faster to run and easier to change.",
+    "At Paysys Labs I work across workflow automation, distributed job processing and integration layers — replacing hardcoded, slow-to-change logic with configuration-driven services that any developer can extend without redeploys."
+  ],
+  "education": {
+    "heading": "Education",
+    "items": [
+      {
+        "school": "FAST NUCES",
+        "degree": "Bachelor of Science in Computer Science",
+        "period": "2022 — 2026",
+        "detail": "GPA: 3.44 / 4.00"
+      },
+      {
+        "school": "Army Public School and College - (APSACS)",
+        "degree": "College, ENGINEERING",
+        "period": "2020 — 2022",
+        "detail": "Grade: 85%"
+      }
+    ]
+  },
+  "skills": {
+    "heading": "Toolbox",
+    "groups": [
+      {
+        "group": "Languages",
+        "items": ["Java", "C#", "JavaScript / TypeScript", "Python", "SQL"]
+      },
+      {
+        "group": "Libraries & Frameworks",
+        "items": [
+          "Spring Boot",
+          ".NET",
+          "Spring Data JPA",
+          "Spring Security",
+          "ReactJS",
+          "NestJS",
+          "NodeJS",
+          "ExpressJS"
+        ]
+      },
+      {
+        "group": "DevOps & Cloud",
+        "items": [
+          "Docker",
+          "Docker Compose",
+          "AWS EC2",
+          "AWS VPC",
+          "AWS Route53",
+          "AWS Load Balancer",
+          "Railway",
+          "Vercel"
+        ]
+      },
+      {
+        "group": "Databases",
+        "items": ["PostgreSQL", "MySQL", "MongoDB", "Microsoft SQL Server"]
+      },
+      {
+        "group": "Productivity",
+        "items": [
+          "Git",
+          "Linux (Arch / Debian)",
+          "Bash",
+          "Markdown",
+          "LaTeX",
+          "Jupyter",
+          "Selenium"
+        ]
+      }
+    ]
+  }
+}
