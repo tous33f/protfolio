@@ -1,0 +1,11 @@
+{
+  "title": "Muhammad Touseef — Software Engineer",
+  "titleTemplate": "%s — Muhammad Touseef",
+  "description": "Muhammad Touseef — Backend Software Engineer building scalable, configuration-driven financial systems.",
+  "pages": {
+    "/about": "About",
+    "/work": "Work",
+    "/blog": "Blog",
+    "/contact": "Contact"
+  }
+}

@@ -1,8 +1,8 @@
 {
-  "themeToggle": false,
+  "themeToggle": true,
   "brand": {
-    "mark": "TN",
-    "name": "Touseef Naveed",
+    "mark": "MT",
+    "name": "Muhammad Touseef",
     "to": "/"
   },
   "links": [
@@ -13,7 +13,7 @@
     { "label": "Contact", "to": "/contact" }
   ],
   "cta": {
-    "label": "Resume ↗",
-    "href": "https://drive.google.com/file/d/1eJWbvsNlF85X3BS2Z-ZkdqddZEFeW8p4/view?usp=drive_link"
+    "label": "GitHub ↗",
+    "href": "https://github.com/tous33f"
   }
 }

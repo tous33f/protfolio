@@ -1,0 +1,38 @@
+{
+  "eyebrow": "About",
+  "title": {
+    "text": "Backend engineer who makes systems faster to run and easier to change.",
+    "highlights": [
+      { "start": 35, "end": 48 },
+      { "start": 53, "end": 69 }
+    ]
+  },
+  "bio": [
+    "First paragraph of the bio.",
+    "Second paragraph of the bio."
+  ],
+  "education": {
+    "heading": "Education",
+    "items": [
+      {
+        "school": "FAST NUCES",
+        "degree": "Bachelor of Science in Computer Science",
+        "period": "2022 — 2026",
+        "detail": "GPA: 3.44 / 4.00"
+      }
+    ]
+  },
+  "skills": {
+    "heading": "Toolbox",
+    "groups": [
+      {
+        "group": "Languages",
+        "items": ["Java", "C#", "JavaScript / TypeScript", "Python", "SQL"]
+      },
+      {
+        "group": "Databases",
+        "items": ["PostgreSQL", "MySQL", "MongoDB"]
+      }
+    ]
+  }
+}

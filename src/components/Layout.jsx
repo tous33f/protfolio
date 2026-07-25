@@ -2,6 +2,8 @@ import { useEffect } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 import Navbar from './Navbar'
 import Footer from './Footer'
+import SiteMeta from './SiteMeta'
+import Favicon from './Favicon'
 import styles from './Layout.module.css'
 
 function ScrollToTop() {
@@ -15,6 +17,8 @@ function ScrollToTop() {
 export default function Layout() {
   return (
     <div className={styles.shell}>
+      <SiteMeta />
+      <Favicon />
       <ScrollToTop />
       <Navbar />
       <main className={styles.main}>

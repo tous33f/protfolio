@@ -1,5 +1,5 @@
 {
-  "copyright": "Touseef Naveed",
+  "copyright": "Muhammad Touseef",
   "links": [
     { "label": "About", "to": "/about" },
     { "label": "Work", "to": "/work" },
@@ -7,5 +7,6 @@
     { "label": "Contact", "to": "/contact" },
     { "label": "GitHub", "href": "https://github.com/tous33f" }
   ],
-  "backToTop": "Top ↑"
+  "backToTop": "Top ↑",
+  "builtWith": "React · Vite"
 }

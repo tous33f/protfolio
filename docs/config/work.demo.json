@@ -1,0 +1,28 @@
+{
+  "eyebrow": "Work",
+  "title": "Experience & projects",
+  "lead": "Where I've been shipping — and a couple of things I've built on the side.",
+  "experience": [
+    {
+      "company": "Paysys Labs",
+      "companyUrl": "https://www.linkedin.com/company/paysys-labs",
+      "role": "Associate Software Engineer",
+      "mode": "Onsite",
+      "period": "Oct 2025 — Present",
+      "current": true,
+      "points": [
+        "First achievement bullet.",
+        "Second achievement bullet."
+      ]
+    }
+  ],
+  "projectsHeading": "Selected projects",
+  "projects": [
+    {
+      "name": "Incident Reporting System",
+      "url": "https://github.com/tous33f/issue-tracker",
+      "stack": ["NodeJS", "ExpressJS", "ReactJS", "SQLite"],
+      "description": "A WhatsApp-based incident management system."
+    }
+  ]
+}
