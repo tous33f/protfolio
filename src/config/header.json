@@ -1,0 +1,19 @@
+{
+  "themeToggle": true,
+  "brand": {
+    "mark": "TN",
+    "name": "Touseef Naveed",
+    "to": "/"
+  },
+  "links": [
+    { "label": "Home", "to": "/" },
+    { "label": "About", "to": "/about" },
+    { "label": "Work", "to": "/work" },
+    { "label": "Blog", "to": "/blog" },
+    { "label": "Contact", "to": "/contact" }
+  ],
+  "cta": {
+    "label": "GitHub ↗",
+    "href": "https://github.com/tous33f"
+  }
+}

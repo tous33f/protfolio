@@ -1,6 +1,9 @@
-import { profile } from '../data/resume'
+import contact from '../config/contact.json'
+import { renderRanges } from '../utils/richText'
 import { useReveal } from '../hooks/useReveal'
 import styles from './Contact.module.css'
+
+const isHttp = (href) => /^https?:/.test(href || '')
 
 export default function Contact() {
   const ref = useReveal()
@@ -9,32 +12,38 @@ export default function Contact() {
     <section id="contact" className={styles.contact}>
       <div className="container" ref={ref}>
         <div className={`${styles.cta} reveal`}>
-          <p className="section-eyebrow">Contact</p>
+          {contact.eyebrow && (
+            <p className="section-eyebrow">{contact.eyebrow}</p>
+          )}
           <h2 className={styles.title}>
-            Let’s build something <span className={styles.hl}>solid</span>.
+            {renderRanges(contact.title, contact.titleHighlights, styles.hl)}
           </h2>
-          <p className={styles.lead}>
-            I’m open to backend &amp; full-stack roles and interesting problems.
-            The fastest way to reach me is email.
-          </p>
-          <a
-            href={profile.socials.email}
-            className={`btn btn-primary ${styles.mail}`}
-          >
-            {profile.email}
-          </a>
+          {contact.lead && <p className={styles.lead}>{contact.lead}</p>}
 
-          <div className={styles.links}>
-            <a href={profile.socials.github} target="_blank" rel="noreferrer">
-              GitHub
+          {contact.email && (
+            <a
+              href={`mailto:${contact.email}`}
+              className={`btn btn-primary ${styles.mail}`}
+            >
+              {contact.email}
             </a>
-            <a href={profile.socials.linkedin} target="_blank" rel="noreferrer">
-              LinkedIn
-            </a>
-            <a href={`tel:${profile.phone.replace(/[^+\d]/g, '')}`}>
-              {profile.phone}
-            </a>
-          </div>
+          )}
+
+          {contact.links?.length > 0 && (
+            <div className={styles.links}>
+              {contact.links.map((l, i) =>
+                isHttp(l.href) ? (
+                  <a key={i} href={l.href} target="_blank" rel="noreferrer">
+                    {l.label}
+                  </a>
+                ) : (
+                  <a key={i} href={l.href}>
+                    {l.label}
+                  </a>
+                )
+              )}
+            </div>
+          )}
         </div>
       </div>
     </section>

@@ -55,27 +55,6 @@
   animation: decoFade 0.9s ease forwards;
 }
 
-.badge {
-  position: absolute;
-  bottom: 2%;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 4;
-  white-space: nowrap;
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  padding: 5px 12px;
-  border-radius: 999px;
-  background: var(--surface-solid);
-  border: 1px solid var(--border);
-  color: var(--text);
-  box-shadow: 0 6px 16px -12px rgba(0, 0, 0, 0.5);
-}
-.badge::first-letter {
-  color: #2fbf5f;
-}
-
 @keyframes decoFade {
   from {
     opacity: 0;

@@ -2,6 +2,11 @@
   margin-bottom: 20px;
 }
 
+.empty {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+}
+
 .list {
   display: flex;
   flex-direction: column;

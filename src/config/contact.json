@@ -1,0 +1,12 @@
+{
+  "eyebrow": "Contact",
+  "title": "Let's build something solid.",
+  "titleHighlights": [{ "start": 22, "end": 27 }],
+  "lead": "I'm open to backend & full-stack roles and interesting problems. The fastest way to reach me is email.",
+  "email": "touseefnaveed777@gmail.com",
+  "links": [
+    { "label": "GitHub", "href": "https://github.com/tous33f" },
+    { "label": "LinkedIn", "href": "https://www.linkedin.com/in/muhammad7touseef" },
+    { "label": "(+92) 311-1441081", "href": "tel:+923111441081" }
+  ]
+}

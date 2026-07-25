@@ -3,8 +3,7 @@
     "image": "/avatar/profile.png",
     "alt": "Muhammad Touseef",
     "fallbackInitials": "MT",
-    "showDecorations": true,
-    "availableBadge": "Available"
+    "showDecorations": true
   },
 
   "intro": {

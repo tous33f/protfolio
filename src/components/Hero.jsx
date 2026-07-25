@@ -1,6 +1,7 @@
 import { Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import home from '../config/home.json'
+import { renderRanges } from '../utils/richText'
 import MacToggle from './MacToggle'
 import Avatar from './Avatar'
 import Particles from './Particles'
@@ -18,28 +19,6 @@ function renderName(text, toggleIndex) {
       <Fragment key={i}>{char}</Fragment>
     )
   )
-}
-
-// Wrap the [start, end) ranges of `text` in animated underline spans.
-function renderHeadline(text, ranges = []) {
-  const sorted = [...ranges]
-    .filter((r) => r && r.end > r.start)
-    .sort((a, b) => a.start - b.start)
-
-  const out = []
-  let cursor = 0
-  sorted.forEach((r, i) => {
-    const start = Math.max(cursor, r.start)
-    if (start > cursor) out.push(<Fragment key={`t${i}`}>{text.slice(cursor, start)}</Fragment>)
-    out.push(
-      <span key={`u${i}`} className={styles.underline}>
-        {text.slice(start, r.end)}
-      </span>
-    )
-    cursor = r.end
-  })
-  if (cursor < text.length) out.push(<Fragment key="tail">{text.slice(cursor)}</Fragment>)
-  return out
 }
 
 // Replace the {O} token in the hint with the little pill glyph.
@@ -76,7 +55,7 @@ export default function Hero() {
           </h1>
 
           <h2 className={styles.headline}>
-            {renderHeadline(headline.text, headline.underlines)}
+            {renderRanges(headline.text, headline.underlines, styles.underline)}
           </h2>
 
           {switchHint && (
@@ -106,7 +85,6 @@ export default function Hero() {
             alt={avatar.alt}
             initials={avatar.fallbackInitials}
             showDecorations={avatar.showDecorations}
-            badge={avatar.availableBadge}
           />
 
           <p className={styles.role}>

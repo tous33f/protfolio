@@ -1,31 +1,7 @@
-import { Fragment } from 'react'
 import about from '../config/about.json'
+import { renderRanges } from '../utils/richText'
 import { useReveal } from '../hooks/useReveal'
 import styles from './About.module.css'
-
-// Wrap the [start, end) ranges of `text` in accent-highlight spans.
-function renderHighlights(text, ranges = []) {
-  const sorted = [...ranges]
-    .filter((r) => r && r.end > r.start)
-    .sort((a, b) => a.start - b.start)
-
-  const out = []
-  let cursor = 0
-  sorted.forEach((r, i) => {
-    const start = Math.max(cursor, r.start)
-    if (start > cursor)
-      out.push(<Fragment key={`t${i}`}>{text.slice(cursor, start)}</Fragment>)
-    out.push(
-      <span key={`h${i}`} className={styles.hl}>
-        {text.slice(start, r.end)}
-      </span>
-    )
-    cursor = r.end
-  })
-  if (cursor < text.length)
-    out.push(<Fragment key="tail">{text.slice(cursor)}</Fragment>)
-  return out
-}
 
 export default function About() {
   const ref = useReveal()
@@ -36,7 +12,7 @@ export default function About() {
       <div className="container" ref={ref}>
         <p className="section-eyebrow reveal">{eyebrow}</p>
         <h2 className="section-title reveal">
-          {renderHighlights(title.text, title.highlights)}
+          {renderRanges(title.text, title.highlights, styles.hl)}
         </h2>
 
         <div className={styles.grid}>

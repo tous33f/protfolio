@@ -3,7 +3,8 @@ import decorationConfig from '../config/decorations.json'
 import styles from './Avatar.module.css'
 
 const FRAMES = decorationConfig.frames || []
-const CYCLE_MS = decorationConfig.cycleMs || 6000
+// How long each frame stays before crossfading to the next, configured in seconds.
+const CYCLE_MS = (decorationConfig.secondsPerFrame || 6) * 1000
 const N = FRAMES.length
 
 // Avatar with animated decoration frames overlaid on top (avatardecoration.com).
@@ -18,7 +19,6 @@ export default function Avatar({
   alt = '',
   initials = '',
   showDecorations = true,
-  badge = 'Available',
 }) {
   const [idx, setIdx] = useState(0)
   const [imgFailed, setImgFailed] = useState(false)
@@ -79,12 +79,6 @@ export default function Avatar({
             className={`${styles.deco} ${styles.decoFront}`}
           />
         </>
-      )}
-
-      {badge && (
-        <span className={styles.badge} title="Open to work">
-          ● {badge}
-        </span>
       )}
     </div>
   )

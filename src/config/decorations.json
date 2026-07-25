@@ -1,5 +1,5 @@
 {
-  "cycleMs": 6000,
+  "secondsPerFrame": 3,
   "frames": [
     "https://img.avatardecoration.com/decorations/aurora.png",
     "https://img.avatardecoration.com/decorations/arcane_sigil.png",

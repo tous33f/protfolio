@@ -40,6 +40,9 @@
   border-radius: 14px;
   background: var(--surface);
 }
+.eduItem + .eduItem {
+  margin-top: 12px;
+}
 .eduItem strong {
   display: block;
   font-family: var(--display);

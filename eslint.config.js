@@ -17,5 +17,12 @@ export default defineConfig([
       globals: globals.browser,
       parserOptions: { ecmaFeatures: { jsx: true } },
     },
+    rules: {
+      // allow destructuring-out props (e.g. `const { node, ...rest }`) to drop them
+      'no-unused-vars': [
+        'error',
+        { varsIgnorePattern: '^[A-Z_]', ignoreRestSiblings: true },
+      ],
+    },
   },
 ])

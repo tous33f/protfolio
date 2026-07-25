@@ -1,12 +1,13 @@
 import { Link, useParams } from 'react-router-dom'
-import { posts } from '../data/resume'
+import { getPost } from '../data/blog'
 import { useReveal } from '../hooks/useReveal'
+import Markdown from './Markdown'
 import styles from './BlogPost.module.css'
 
 export default function BlogPost() {
   const { slug } = useParams()
   const ref = useReveal()
-  const post = posts.find((p) => p.slug === slug)
+  const post = getPost(slug)
 
   if (!post) {
     return (
@@ -33,17 +34,14 @@ export default function BlogPost() {
         </Link>
 
         <div className={`${styles.meta} reveal`}>
-          <span className={styles.tag}>{post.tag}</span>
-          <span>{post.date}</span>
+          {post.tag && <span className={styles.tag}>{post.tag}</span>}
+          {post.date && <span>{post.date}</span>}
           <span>·</span>
           <span>{post.readTime}</span>
         </div>
 
-        <h1 className={`${styles.title} reveal`}>{post.title}</h1>
-        <p className={`${styles.lead} reveal`}>{post.excerpt}</p>
-
         <div className={`${styles.body} reveal`}>
-          {post.content.map((block, i) => <Block key={i} block={block} />)}
+          <Markdown>{post.body}</Markdown>
         </div>
 
         <div className={`${styles.footer} reveal`}>
@@ -57,23 +55,4 @@ export default function BlogPost() {
       </div>
     </article>
   )
-}
-
-function Block({ block }) {
-  if (block.h) return <h2 className={styles.h2}>{block.h}</h2>
-  if (block.code)
-    return (
-      <pre className={styles.code}>
-        <code>{block.code}</code>
-      </pre>
-    )
-  if (block.ul)
-    return (
-      <ul className={styles.list}>
-        {block.ul.map((item, i) => (
-          <li key={i}>{item}</li>
-        ))}
-      </ul>
-    )
-  return <p className={styles.p}>{block.p}</p>
 }
