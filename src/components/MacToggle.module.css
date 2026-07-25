@@ -1,0 +1,77 @@
+/* Sized in `em` so it fits inline in place of a letter in the display heading.
+   The parent sets font-size; everything here scales from it. */
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0 0.04em;
+  border: none;
+  background: transparent;
+  vertical-align: baseline;
+  line-height: 1;
+  transform: translateY(0.04em);
+}
+
+.track {
+  position: relative;
+  display: inline-block;
+  width: 1.62em;
+  height: 0.96em;
+  border-radius: 999px;
+  background: var(--border-strong);
+  border: 0.045em solid var(--border-strong);
+  box-shadow: inset 0 0.03em 0.08em rgba(0, 0, 0, 0.35);
+  transition:
+    background 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.32s ease;
+}
+
+.on .track {
+  background: var(--accent);
+  border-color: var(--accent);
+  box-shadow:
+    inset 0 0.03em 0.08em rgba(0, 0, 0, 0.15),
+    0 0 0.5em -0.05em var(--accent);
+}
+
+.knob {
+  position: absolute;
+  top: 50%;
+  left: 0.075em;
+  width: 0.8em;
+  height: 0.8em;
+  border-radius: 50%;
+  background: #fff;
+  transform: translate(0, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 0.05em 0.12em rgba(0, 0, 0, 0.4),
+    0 0 0.02em rgba(0, 0, 0, 0.2);
+  transition: transform 0.32s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.on .knob {
+  transform: translate(0.66em, -50%);
+}
+
+.icon {
+  font-size: 0.42em;
+  line-height: 1;
+  color: #b06a1e;
+}
+
+.toggle:focus-visible {
+  outline: none;
+}
+
+.toggle:focus-visible .track {
+  outline: 0.08em solid var(--accent);
+  outline-offset: 0.1em;
+}
+
+.toggle:hover .track {
+  filter: brightness(1.08);
+}
