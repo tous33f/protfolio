@@ -6,6 +6,7 @@ import Work from './components/Work'
 import Blog from './components/Blog'
 import BlogPost from './components/BlogPost'
 import Contact from './components/Contact'
+import Game from './components/Game'
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/game" element={<Game />} />
           <Route path="*" element={<Hero />} />
         </Route>
       </Routes>

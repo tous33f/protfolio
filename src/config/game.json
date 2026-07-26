@@ -1,0 +1,45 @@
+{
+  "physics": {
+    "startSpeed": 300,
+    "maxSpeed": 720,
+    "speedRampPerSecond": 8,
+    "gravity": 2800,
+    "jumpVelocity": 960
+  },
+  "obstacles": {
+    "minGap": 600,
+    "maxGap": 900,
+    "types": {
+      "walker": true,
+      "wolf": true,
+      "weirwood": true,
+      "spikes": true,
+      "banner": true,
+      "wildfire": true,
+      "crow": true
+    }
+  },
+  "dragon": {
+    "enabled": true,
+    "minSeconds": 10,
+    "maxSeconds": 15,
+    "hitsToKill": 8,
+    "fireEveryMs": 1000,
+    "bonusScore": 150
+  },
+  "text": {
+    "pageTitle": "Beyond the Wall",
+    "pageLead": "A Night’s Watch runner. Leap the horrors beyond the Wall — and when a dragon comes, hold your ground and man the crossbow.",
+    "readyTitle": "Beyond the Wall",
+    "readyLine1": "{jump} to jump the obstacles.",
+    "readyLine2": "When the dragon appears, {aim} to aim the crossbow — it fires on its own.",
+    "playButton": "▶ Take the Black",
+    "gameOverTitle": "And now his watch is ended.",
+    "restartButton": "⟲ Rise again",
+    "scoreLabel": "Score",
+    "reviveLine": "The Lord of Light is not done with you…",
+    "dragonBanner": "{name} attacks! Steer the crossbow — it fires on its own",
+    "controlsTouch": "Jump: tap · Aim the crossbow: drag on the screen",
+    "controlsDesktop": "Jump: Space / ↑ / click · Aim the crossbow: move your mouse"
+  }
+}

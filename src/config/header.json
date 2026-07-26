@@ -10,7 +10,8 @@
     { "label": "About", "to": "/about" },
     { "label": "Work", "to": "/work" },
     { "label": "Blog", "to": "/blog" },
-    { "label": "Contact", "to": "/contact" }
+    { "label": "Contact", "to": "/contact" },
+    { "label": "Game", "to": "/game" }
   ],
   "cta": {
     "label": "Resume ↗",

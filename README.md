@@ -12,7 +12,9 @@ so you can reshape the whole site **without touching component code**.
 - **Cursor-reactive particle background** behind the hero.
 - **Animated avatar frames** streamed from
   [avatardecoration.com](https://avatardecoration.com) that cycle and crossfade.
-- **Routed pages** — Home, About, Work, Blog, Contact (each on its own URL).
+- **Routed pages** — Home, About, Work, Blog, Contact, and a Game (each on its own URL).
+- **"Beyond the Wall" mini-game** — a Game-of-Thrones themed endless runner with
+  a dragon crossbow boss, fully configurable via `game.json`.
 - **Markdown blog** — one file per post, auto-calculated read time, per-post
   visibility toggle.
 - **Light / dark theme** with an amber accent, persisted to `localStorage`.
@@ -74,6 +76,7 @@ configurable parameter** and a note on which part of the UI it controls.
 | `contact.json` | Contact page (title, email button, links) | [docs/config/contact.md](docs/config/contact.md) |
 | `footer.json` | Site footer (copyright, links, back-to-top) | [docs/config/footer.md](docs/config/footer.md) |
 | `decorations.json` | Animated avatar decoration frames + timing | [docs/config/decorations.md](docs/config/decorations.md) |
+| `game.json` | "Beyond the Wall" game — physics, obstacles, dragon | [docs/config/game.md](docs/config/game.md) |
 | Avatar image | The profile photo shown in the hero | [public/avatar/README.md](public/avatar/README.md) |
 
 > **How edits apply:** these JSON and Markdown files are bundled at build time.
