@@ -27,7 +27,11 @@ export default function Navbar() {
   }, [open])
 
   return (
-    <header className={`${styles.nav} ${scrolled ? styles.scrolled : ''}`}>
+    <header
+      className={`${styles.nav} ${scrolled ? styles.scrolled : ''} ${
+        open ? styles.menuOpen : ''
+      }`}
+    >
       <div className={`container ${styles.inner}`}>
         <Link
           to={brand.to || '/'}

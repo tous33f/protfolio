@@ -3,17 +3,22 @@ import decorationConfig from '../config/decorations.json'
 import styles from './Avatar.module.css'
 
 const FRAMES = decorationConfig.frames || []
-// How long each frame stays before crossfading to the next, configured in seconds.
-const CYCLE_MS = (decorationConfig.secondsPerFrame || 6) * 1000
+// How long each frame stays fully visible before it starts fading out (seconds).
+const HOLD_MS = (decorationConfig.secondsPerFrame || 6) * 1000
+// How long the fade in / fade out itself takes (ms).
+const FADE_MS = decorationConfig.fadeMs ?? 500
+// Blank gap AFTER the current frame has fully faded out and BEFORE the next
+// one fades in (ms) — configurable in decorations.json.
+const GAP_MS = decorationConfig.gapMs ?? 400
 const N = FRAMES.length
 
 // Avatar with animated decoration frames overlaid on top (avatardecoration.com).
 // Frames + timing come from src/config/decorations.json; the profile image and
 // text come from src/config/home.json (passed in as props by <Hero />).
 //
-// The frames rotate: each one plays, then crossfades into the next, looping the
-// whole set forever. If the configured image is missing, we fall back to a
-// placeholder with the initials from config.
+// The frames rotate one at a time: a frame holds, fades OUT, then after a
+// configurable blank gap the next frame fades IN — looping forever. If the
+// configured image is missing, we fall back to a placeholder with the initials.
 export default function Avatar({
   image = '',
   alt = '',
@@ -21,6 +26,7 @@ export default function Avatar({
   showDecorations = true,
 }) {
   const [idx, setIdx] = useState(0)
+  const [visible, setVisible] = useState(true)
   const [imgFailed, setImgFailed] = useState(false)
 
   // Preload every frame so swaps are instant and animation stays continuous.
@@ -34,15 +40,41 @@ export default function Avatar({
     return () => imgs.splice(0)
   }, [showDecorations])
 
+  // Cycle: hold → fade out → gap → advance + fade in → repeat.
   useEffect(() => {
     if (!showDecorations || N < 2) return
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-    const timer = setInterval(() => setIdx((i) => (i + 1) % N), CYCLE_MS)
-    return () => clearInterval(timer)
+
+    let cancelled = false
+    const timers = []
+
+    const schedule = () => {
+      // current frame is visible; wait for its fade-in + hold, then fade out
+      timers.push(
+        setTimeout(() => {
+          if (cancelled) return
+          setVisible(false) // fade out over FADE_MS
+          // after the fade-out completes, wait GAP_MS, then show the next frame
+          timers.push(
+            setTimeout(() => {
+              if (cancelled) return
+              setIdx((i) => (i + 1) % N)
+              setVisible(true) // fade the next frame in
+              schedule()
+            }, FADE_MS + GAP_MS)
+          )
+        }, FADE_MS + HOLD_MS)
+      )
+    }
+
+    schedule()
+    return () => {
+      cancelled = true
+      timers.forEach(clearTimeout)
+    }
   }, [showDecorations])
 
   const useImage = image && !imgFailed
-  const prev = (idx - 1 + N) % N
 
   return (
     <div className={styles.wrap}>
@@ -61,24 +93,16 @@ export default function Avatar({
         )}
       </div>
 
-      {/* Decoration frames overlaid in the foreground, crossfading */}
+      {/* Single decoration frame overlaid in the foreground; fades out, gaps,
+          then the next fades in. */}
       {showDecorations && N > 0 && (
-        <>
-          <img
-            key={`b-${prev}`}
-            src={FRAMES[prev]}
-            alt=""
-            aria-hidden="true"
-            className={styles.deco}
-          />
-          <img
-            key={`f-${idx}`}
-            src={FRAMES[idx]}
-            alt=""
-            aria-hidden="true"
-            className={`${styles.deco} ${styles.decoFront}`}
-          />
-        </>
+        <img
+          src={FRAMES[idx]}
+          alt=""
+          aria-hidden="true"
+          className={`${styles.deco} ${visible ? styles.decoVisible : ''}`}
+          style={{ transitionDuration: `${FADE_MS}ms` }}
+        />
       )}
     </div>
   )

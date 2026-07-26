@@ -1,5 +1,7 @@
 {
   "secondsPerFrame": 6,
+  "fadeMs": 500,
+  "gapMs": 400,
   "frames": [
     "https://img.avatardecoration.com/decorations/aurora.png",
     "https://img.avatardecoration.com/decorations/phoenix.png",

@@ -21,6 +21,14 @@
   border-bottom-color: var(--border);
 }
 
+/* While the mobile menu is open, drop the blur. backdrop-filter creates a
+   containing block, which would make the full-screen overlay (position: fixed)
+   resolve against the 72px navbar instead of the viewport — collapsing it. */
+.nav.menuOpen {
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
 .inner {
   display: flex;
   align-items: center;

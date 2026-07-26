@@ -35,7 +35,9 @@
   object-fit: cover;
 }
 
-/* Decoration frames — foreground, centered over the avatar. */
+/* Decoration frame — foreground, centered over the avatar.
+   Starts hidden and fades in/out; the fade duration is set inline from
+   decorations.json (fadeMs). */
 .deco {
   position: absolute;
   top: 50%;
@@ -47,25 +49,17 @@
   pointer-events: none;
   z-index: 2;
   filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.25));
+  opacity: 0;
+  transition-property: opacity;
+  transition-timing-function: ease;
 }
 
-/* Front layer crossfades in over the previous one. */
-.decoFront {
-  z-index: 3;
-  animation: decoFade 0.9s ease forwards;
-}
-
-@keyframes decoFade {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+.decoVisible {
+  opacity: 1;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .decoFront {
-    animation: none;
+  .deco {
+    transition: none;
   }
 }
