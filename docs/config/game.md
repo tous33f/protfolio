@@ -107,6 +107,7 @@ All on-screen copy and button labels. Two tokens are substituted at runtime in
 | `readyLine1` / `readyLine2` | Two instruction lines on the start overlay (support `{jump}` / `{aim}`). |
 | `playButton` | Start-overlay button label. |
 | `gameOverTitle` | Heading on the game-over overlay. |
+| `gameOverTaunt` | Ygritte’s taunt line shown (with her avatar) on the game-over overlay. Set to `""` to hide it. |
 | `restartButton` | Game-over button label (triggers the resurrection). |
 | `scoreLabel` | Label before the final score. |
 | `reviveLine` | Caption shown during the resurrection cinematic. |

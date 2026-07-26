@@ -76,6 +76,7 @@ const CFG = {
       'When the dragon appears, {aim} to aim the crossbow — it fires on its own.',
     playButton: '▶ Take the Black',
     gameOverTitle: 'And now his watch is ended.',
+    gameOverTaunt: 'You know nothing, and can’t do anything, Jon Snow.',
     restartButton: '⟲ Rise again',
     scoreLabel: 'Score',
     reviveLine: 'The Lord of Light is not done with you…',
@@ -521,6 +522,40 @@ const ACTIVE_OBSTACLES = OBSTACLES.filter(
 )
 
 /* ------------------------------------------------------------- component */
+
+// Ygritte — the wildling, drawn as a small pixel avatar for the taunt.
+function YgritteAvatar() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      className={styles.ygritte}
+      shapeRendering="crispEdges"
+      role="img"
+      aria-label="Ygritte"
+    >
+      {/* fur hood */}
+      <rect x="2" y="7" width="20" height="15" fill="#5a3f28" />
+      <rect x="3" y="6" width="18" height="3" fill="#7a5636" />
+      <rect x="2" y="18" width="20" height="4" fill="#6b4a2f" />
+      {/* copper hair */}
+      <rect x="6" y="3" width="12" height="11" fill="#c0562a" />
+      <rect x="5" y="6" width="3" height="11" fill="#a8481f" />
+      <rect x="16" y="6" width="3" height="11" fill="#a8481f" />
+      <rect x="7" y="2" width="10" height="2" fill="#d9743a" />
+      {/* face */}
+      <rect x="8" y="7" width="8" height="9" fill="#e8bd97" />
+      <rect x="8" y="6" width="8" height="2" fill="#c0562a" />
+      {/* eyes */}
+      <rect x="9" y="10" width="2" height="2" fill="#3a6ea5" />
+      <rect x="13" y="10" width="2" height="2" fill="#3a6ea5" />
+      {/* freckles + smirk */}
+      <rect x="9" y="13" width="1" height="1" fill="#c98b63" />
+      <rect x="11" y="13" width="1" height="1" fill="#c98b63" />
+      <rect x="14" y="13" width="1" height="1" fill="#c98b63" />
+      <rect x="10" y="14" width="4" height="1" fill="#b5432a" />
+    </svg>
+  )
+}
 
 export default function Game() {
   const canvasRef = useRef(null)
@@ -1004,6 +1039,14 @@ export default function Game() {
           {uiPhase === 'gameover' && (
             <div className={styles.overlay}>
               <h3 className={styles.title}>{TXT.gameOverTitle}</h3>
+              {TXT.gameOverTaunt && (
+                <div className={styles.tauntRow}>
+                  <span className={styles.ygritteWrap}>
+                    <YgritteAvatar />
+                  </span>
+                  <p className={styles.taunt}>“{TXT.gameOverTaunt}”</p>
+                </div>
+              )}
               <p className={styles.score}>
                 {TXT.scoreLabel} — {finalScore}
               </p>
